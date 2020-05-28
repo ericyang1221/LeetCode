@@ -58,18 +58,21 @@ public class DecodeString394 {
         private String decodeSelf(){
             StringBuffer sb = new StringBuffer();
             if (childList != null){
+                //如果有子节点，递归解析子节点
                 StringBuffer subSb = new StringBuffer();
                 for (Node n : childList){
                     if (n != null){
                         subSb.append(n.decodeSelf());
                     }
                 }
+                //乘以系数
                 if (coefficient > 0 && subSb.length() > 0){
                     for (int i=0;i<coefficient;i++){
                         sb.append(subSb);
                     }
                 }
             }else{
+                //如果没有子节点，解析自己
                 if (decodedStr != null && decodedStr.length() > 0){
                     if (coefficient > 0){
                         for (int i=0;i<coefficient;i++){
@@ -86,10 +89,27 @@ public class DecodeString394 {
         }
     }
 
-    public static void main(String[] args){
-        testNode();
+    /**
+     * 把字符串解析成一棵树
+     * @param undecodedStr
+     * @return
+     */
+    private static Node parseString(String undecodedStr){
+        Node rootNode = new Node();
+
+        return rootNode;
     }
 
+    public static void main(String[] args){
+//        testNode();
+        String s = "3[a2[c]]";
+        Node root = parseString(s);
+        System.out.println("result: " + root.decodeSelf());
+    }
+
+    /**
+     * 测试Node类
+     */
     private static void testNode(){
         Node n = new Node();
         n.decodedStr = "a";
